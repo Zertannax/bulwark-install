@@ -1,0 +1,46 @@
+name: Sync installers
+
+# Mirror Zertannax/bulwark scripts/install.sh into this repo on every
+# push to master there. The bulwark repo is the single source of truth;
+# this repo is just a delivery channel for getwark.com/install.sh.
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Daily at 06:17 UTC as a safety net for missed webhooks
+    - cron: "17 6 * * *"
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.SYNC_TOKEN }}
+
+      - name: Pull install.sh from bulwark (master)
+        uses: actions/checkout@v4
+        with:
+          repository: Zertannax/bulwark
+          ref: master
+          path: __source__
+          sparse-checkout: scripts/install.sh
+
+      - name: Install install.sh into scripts/
+        run: |
+          mkdir -p scripts
+          cp __source__/scripts/install.sh scripts/install.sh
+          chmod +x scripts/install.sh
+
+      - name: Commit if changed
+        run: |
+          git config user.name "bulwark-install-bot"
+          git config user.email "bot@getwark.com"
+          git add scripts/install.sh
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "chore: sync install.sh from Zertannax/bulwark@master"
+          git push

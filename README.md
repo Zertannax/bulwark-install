@@ -26,8 +26,8 @@ and fronted by the `getwark.com` / `install.getwark.com` custom domain.
 
 | File | Source | Purpose |
 |---|---|---|
-| `scripts/install.sh` | `bulwark/scripts/install.sh` | POSIX installer (macOS, Linux, WSL) |
-| `scripts/install.ps1` | `bulwark/scripts/install.ps1` | PowerShell installer (Windows) |
+| `install.sh` | `bulwark/scripts/install.sh` | POSIX installer (macOS, Linux, WSL) |
+| `install.ps1` | `bulwark/scripts/install.ps1` | PowerShell installer (Windows) |
 
 ## License
 

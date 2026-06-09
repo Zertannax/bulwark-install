@@ -27,11 +27,11 @@ jobs:
           path: __source__
           sparse-checkout: scripts/install.sh
 
-      - name: Install install.sh into scripts/
+      - name: Install install.sh into repo root
         run: |
-          mkdir -p scripts
-          cp __source__/scripts/install.sh scripts/install.sh
-          chmod +x scripts/install.sh
+          cp __source__/scripts/install.sh install.sh
+          chmod +x install.sh
+          rm -rf __source__
 
       - name: Commit if changed
         run: |

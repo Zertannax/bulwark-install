@@ -11,13 +11,20 @@
 curl -fsSL https://getwark.com/install.sh | bash
 ```
 
-(Aliases: `https://getwark.com/install.sh` · `https://install.getwark.com/install.sh`)
+**Windows (PowerShell):**
+
+```powershell
+irm https://getwark.com/install.ps1 | iex
+```
+
+(Aliases: `https://getwark.com/install.sh` · `https://getwark.com/install.ps1` · `https://install.getwark.com/install.sh` · `https://bulwark-install.pages.dev/install.sh` · `https://bulwark-install.pages.dev/install.ps1`)
 
 ## What this repo is
 
 This is a **delivery channel**, not the source of truth. The canonical
-installer lives at `Zertannax/bulwark/scripts/install.sh` and is mirrored
-here on every push via `.github/workflows/sync-installers.yml`.
+installers live at `Zertannax/bulwark/scripts/install.sh` and
+`Zertannax/bulwark/scripts/install.ps1`, mirrored here on every push
+via `.github/workflows/sync-installers.yml`.
 
 The mirror is served by **Cloudflare Pages** on the `bulwark-install` project
 and fronted by the `getwark.com` / `install.getwark.com` custom domain.

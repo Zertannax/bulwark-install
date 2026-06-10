@@ -30,6 +30,7 @@ jobs:
           repository: Zertannax/bulwark
           ref: master
           path: __source__
+          token: ${{ secrets.BULWARK_SOURCE_TOKEN }}
           sparse-checkout: scripts/install.sh
           # .ps1 isn't supported by sparse-checkout's `files:` syntax on
           # Linux runners (the filter runs through a POSIX-only code
